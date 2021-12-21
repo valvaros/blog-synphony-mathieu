@@ -18,7 +18,9 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Cemessage ne peut être vide)
+     * @ORM\Length(min=3, max=10, minMessage='Le titre doit comporter au minimum{{limit}}caractères.")
+     * @ORM\Column(string,lenght=255)
      */
     private $title;
 
@@ -41,6 +43,12 @@ class Article
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     ///////////////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +113,18 @@ class Article
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
