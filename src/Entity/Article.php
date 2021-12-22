@@ -22,9 +22,9 @@ class Article
     private $id;
 
     /**
-     * @Assert\NotBlank(message="Cemessage ne peut être vide)
-     * @Assert\Length(min=3, max=10, minMessage='Le titre doit comporter au minimum{{limit}}caractères.")
-     * @ORM\Column(string,lenght=255)
+     * @Assert\NotBlank(message="Ce message ne peut être vide")
+     * @Assert\Length(min=3, max=255, minMessage="Le titre doit comporter au minimum{{limit}}caractères.")
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 

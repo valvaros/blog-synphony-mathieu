@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Image;
@@ -28,13 +30,13 @@ class ArticleType extends AbstractType
                 'label' => 'Soustitre',
                 'required' => true,
                 'attr' => ['placeholder' => 'Entrez un soustitre'],
-                'contraints'=>[
+                'constraints'=>[
                     new NotBlank([
                         'message'=>'Ce champ ne peut être vide'
                     ]),
                     new Length([
                         'min'=>3,
-                        'max'=> 100,
+                        'max'=> 255,
                         'minMessage'=>'Le sous-titre doit comporter {{limit}} caractères au minimum.'
 
                     ])
@@ -46,6 +48,11 @@ class ArticleType extends AbstractType
                 'required' => true,
                 'attr' => ['placeholder' => 'Entrez unse description']
             ])
+            ->add('category',EntityType::class,[
+                'class'=> Category::class,
+                'choice_label'=>'name',
+                'label'=>'Choisissez la catégorie de l\'article ',
+            ])
             ->add('picture',FileType::class, [
                 'label' => 'Photo',
                 'required' => true,
@@ -56,7 +63,7 @@ class ArticleType extends AbstractType
                         'mimeTypesMessage'=> 'Les types de fichier autorisés sont : .jpeg/ .png'
                     ])
                 ]
-            ])
+                    ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => ['class' => 'btn btn-warning d-block mx-auto my-3 col-4']
