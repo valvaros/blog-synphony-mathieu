@@ -41,7 +41,10 @@ class ArticleController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
 
             $article = $form->getData();
-            dd($article);
+
+            $article->setUser($this->getUser());
+            
+            
             # Association de l'article au user : setOwner()
             //
 
