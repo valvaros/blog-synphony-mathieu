@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -19,7 +23,7 @@ class Article
 
     /**
      * @Assert\NotBlank(message="Cemessage ne peut être vide)
-     * @ORM\Length(min=3, max=10, minMessage='Le titre doit comporter au minimum{{limit}}caractères.")
+     * @Assert\Length(min=3, max=10, minMessage='Le titre doit comporter au minimum{{limit}}caractères.")
      * @ORM\Column(string,lenght=255)
      */
     private $title;

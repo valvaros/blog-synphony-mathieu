@@ -26,12 +26,15 @@ class DashboardController extends AbstractController
     {
         $articles = $this->entityManager->getRepository(Article::class)->findAll();
 
+        $categories = $this->entityManager->getRecpository(Category::class)->findall();
+
         $users = $this->entityManager->getRepository(User::class)->findAll();
 
         return $this->render('dashboard/dashboard.html.twig',
             [
                 'articles' => $articles,
-                'users' => $users
+                'users' => $users,
+                'categories'=>$categories
             ]
         );
     }
