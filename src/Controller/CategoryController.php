@@ -14,7 +14,7 @@ class CategoryController extends AbstractController
 {
     
 /**
-* @Route("/admin/creer-categorie", name="create_catégory", methods={"GET|POST"})
+* @Route("/admin/creer-categorie", name="create_category", methods={"GET|POST"})
  */
 public function createCategory(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager)
     {

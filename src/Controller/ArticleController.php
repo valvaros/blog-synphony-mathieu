@@ -64,16 +64,16 @@ class ArticleController extends AbstractController
                     //Générer une contrainte d'upload. On déclare un arrray avec deux valeurs de type string qui sont les
                     //MimeType autorisés
                     //Vous retrouvez tous les mimes types existant sur internet
-                    $allowedMimeType = ['image/jpeg', 'image/png'];
+                    // $allowedMimeType = ['image/jpeg', 'image/png'];
                     
-                    //La fonction native in_array() permet de comparer deux valeurs ( 2 arguments attendus)
-                    if(in_array($file->getMimeTypes(), $allowedMimeType)){
+                    // //La fonction native in_array() permet de comparer deux valeurs ( 2 arguments attendus)
+                    // if(in_array($file->getMimeType(), $allowedMimeType)){
                     
                         //Nous allons construire le nouveau nom du fichier
 
                         //On stock dans une varriable $originalFilename le nom du fichier.
                         //On utilise encore une fonction native pathinfo()
-                    $originalFilename = pathinfo($file->getClientOriginaleName());
+                        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
                         #Récupération de l'éxtention pour pouvoir reconstruire le nom quelques lignes après.
                         //On utilise la concaténation pour ajouter un point '.'
@@ -112,7 +112,7 @@ class ArticleController extends AbstractController
                         } catch(FileException $exception){
                             // code à éxécuter si une erreur est attrapée 
                         }
-                }
+                // }
 
                 $this->entityManager->persist($article);
                 $this->entityManager->flush();
