@@ -47,7 +47,12 @@ class Commentary
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="commentaries")
      */
     private $article;
-
+    
+    public function __construct()
+    {
+        $this->createdA= new \DateTime;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
